@@ -1,0 +1,19 @@
+<section class="event-details-section" id="event-details">
+  <div class="section-inner">
+    <h2 class="section-title">{{ content.title }}</h2>
+    <p class="event-date">{{ content.date }}</p>
+
+    <ol class="schedule">
+      @for (item of content.schedule; track item.name) {
+        <li class="schedule-item">
+          <div class="schedule-time">{{ item.time }}</div>
+          <div class="schedule-body">
+            <h3 class="schedule-name">{{ item.name }}</h3>
+            <p class="schedule-description">{{ item.description }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+

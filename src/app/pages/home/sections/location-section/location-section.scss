@@ -1,0 +1,51 @@
+@use '../../../../../styles/theme';
+
+.location-section {
+  background-color: theme.$color-surface;
+  padding: theme.$spacing-2xl theme.$spacing-md;
+}
+
+.section-inner {
+  max-width: theme.$max-content-width;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: theme.$color-primary-dark;
+  margin-bottom: theme.$spacing-md;
+}
+
+.venue-name {
+  font-size: 1.5rem;
+  color: theme.$color-accent;
+  margin-bottom: theme.$spacing-xs;
+}
+
+.address {
+  color: theme.$color-text-muted;
+  margin-bottom: theme.$spacing-md;
+}
+
+.description {
+  max-width: 640px;
+  margin-inline: auto;
+  margin-bottom: theme.$spacing-md;
+  line-height: 1.6;
+}
+
+.map-link {
+  display: inline-block;
+  padding: theme.$spacing-xs theme.$spacing-md;
+  border-radius: theme.$border-radius;
+  background-color: theme.$color-primary;
+  color: theme.$color-surface;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: theme.$color-primary-dark;
+  }
+}

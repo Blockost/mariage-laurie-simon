@@ -1,0 +1,43 @@
+<nav #navEl class="nav-bar" [class.is-sticky]="isSticky()">
+  <app-nav-links [navItems]="navItems" />
+</nav>
+
+<div class="mobile-bar">
+  <button
+    type="button"
+    class="menu-toggle"
+    (click)="openDrawer()"
+    aria-label="Open menu"
+    aria-haspopup="dialog"
+    [attr.aria-expanded]="isDrawerOpen()"
+  >
+    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+      <path
+        d="M3 6h18M3 12h18M3 18h18"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    </svg>
+  </button>
+</div>
+
+@if (isDrawerOpen()) {
+  <div class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Site navigation">
+    <button type="button" class="drawer-close" (click)="closeDrawer()" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+        <path
+          d="M4 4l16 16M20 4L4 20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    </button>
+    <div class="mobile-drawer-links">
+      <app-nav-links [navItems]="navItems" (linkActivated)="closeDrawer()" />
+    </div>
+  </div>
+}

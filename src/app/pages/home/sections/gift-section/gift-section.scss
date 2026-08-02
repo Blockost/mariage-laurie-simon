@@ -1,0 +1,32 @@
+@use '../../../../../styles/theme';
+
+.gift-section {
+  background-color: theme.$color-secondary-light;
+  padding: theme.$spacing-2xl theme.$spacing-md;
+}
+
+.section-inner {
+  max-width: theme.$max-content-width;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: theme.$color-primary-dark;
+  margin-bottom: theme.$spacing-md;
+}
+
+.description {
+  max-width: 640px;
+  margin-inline: auto;
+  margin-bottom: theme.$spacing-sm;
+  line-height: 1.6;
+}
+
+.registry-note {
+  max-width: 640px;
+  margin-inline: auto;
+  color: theme.$color-text-muted;
+  line-height: 1.6;
+}

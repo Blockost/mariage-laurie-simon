@@ -1,0 +1,3 @@
+@for (item of navItems(); track item.fragment) {
+  <a class="nav-link" [href]="'#' + item.fragment" (click)="linkActivated.emit()">{{ item.label }}</a>
+}

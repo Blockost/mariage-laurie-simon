@@ -1,0 +1,26 @@
+<section class="dress-code-section" id="dress-code">
+  <div class="section-inner">
+    <h2 class="section-title">{{ content.title }}</h2>
+    <p class="description">{{ content.description }}</p>
+
+    <div class="lists">
+      <div class="list-block">
+        <h3 class="list-title do-title">What to wear</h3>
+        <ul>
+          @for (item of content.doList; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+      <div class="list-block">
+        <h3 class="list-title avoid-title">What to avoid</h3>
+        <ul>
+          @for (item of content.avoidList; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+

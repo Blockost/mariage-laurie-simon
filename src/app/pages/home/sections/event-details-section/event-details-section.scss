@@ -1,0 +1,61 @@
+@use '../../../../../styles/theme';
+
+.event-details-section {
+  background-color: theme.$color-background;
+  padding: theme.$spacing-2xl theme.$spacing-md;
+}
+
+.section-inner {
+  max-width: theme.$max-content-width;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: theme.$color-primary-dark;
+  margin-bottom: theme.$spacing-md;
+}
+
+.event-date {
+  color: theme.$color-accent;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: theme.$spacing-xl;
+}
+
+.schedule {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: theme.$spacing-lg;
+  text-align: left;
+}
+
+.schedule-item {
+  display: flex;
+  gap: theme.$spacing-md;
+  align-items: flex-start;
+  border-left: 3px solid theme.$color-secondary;
+  padding-left: theme.$spacing-md;
+}
+
+.schedule-time {
+  flex: 0 0 auto;
+  min-width: 5.5rem;
+  font-weight: 600;
+  color: theme.$color-primary;
+}
+
+.schedule-name {
+  font-size: 1.15rem;
+  margin-bottom: theme.$spacing-xs;
+}
+
+.schedule-description {
+  color: theme.$color-text-muted;
+  line-height: 1.6;
+}

@@ -1,0 +1,49 @@
+// =============================================================================
+// Theme
+// -----------------------------------------------------------------------------
+// Change the three base colors below to re-theme the entire website.
+// Every other color in this file is derived from them, so there is no need
+// to touch anything past the "Base palette" block for a simple re-theme.
+// =============================================================================
+
+@use 'sass:color';
+
+// Base palette ----------------------------------------------------------------
+$color-primary: #7c8b6f; // sage green
+$color-secondary: #d9c4a9; // warm sand
+$color-accent: #b8763e; // terracotta
+
+// Derived shades (kept in sync with the base palette automatically) -----------
+$color-primary-light: color.scale($color-primary, $lightness: 45%);
+$color-primary-dark: color.scale($color-primary, $lightness: -20%);
+$color-secondary-light: color.scale($color-secondary, $lightness: 35%);
+$color-secondary-dark: color.scale($color-secondary, $lightness: -20%);
+$color-accent-light: color.scale($color-accent, $lightness: 40%);
+$color-accent-dark: color.scale($color-accent, $lightness: -20%);
+
+// Neutrals ----------------------------------------------------------------------
+$color-background: #fdfbf7;
+$color-surface: #ffffff;
+$color-text: #2f2b26;
+$color-text-muted: #6f675c;
+$color-border: #e4ddd0;
+
+// Typography --------------------------------------------------------------------
+$font-family-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+$font-family-body: 'Cormorant Garamond', Georgia, serif;
+
+// Spacing scale -------------------------------------------------------------------
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2.5rem;
+$spacing-xl: 4rem;
+$spacing-2xl: 6rem;
+
+// Layout ----------------------------------------------------------------------------
+$max-content-width: 1080px;
+$border-radius: 8px;
+$nav-height: 72px;
+$z-index-nav: 100;
+$z-index-drawer: 200;
+$breakpoint-mobile: 550px;

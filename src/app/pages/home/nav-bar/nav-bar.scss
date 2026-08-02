@@ -1,0 +1,102 @@
+@use '../../../../styles/theme';
+
+$mobile-breakpoint-query: 'max-width: #{theme.$breakpoint-mobile - 1px}';
+
+.nav-bar {
+  position: static;
+  top: 0;
+  z-index: theme.$z-index-nav;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: theme.$spacing-lg;
+  min-height: theme.$nav-height;
+  padding-inline: theme.$spacing-md;
+  background-color: theme.$color-surface;
+  border-bottom: 1px solid theme.$color-border;
+
+  &.is-sticky {
+    position: sticky;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+  }
+
+  @media (#{$mobile-breakpoint-query}) {
+    display: none;
+  }
+}
+
+.mobile-bar {
+  display: none;
+
+  @media (#{$mobile-breakpoint-query}) {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    min-height: theme.$nav-height;
+    padding-inline: theme.$spacing-md;
+    background-color: theme.$color-surface;
+    border-bottom: 1px solid theme.$color-border;
+    z-index: theme.$z-index-nav;
+  }
+}
+
+.menu-toggle,
+.drawer-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: theme.$spacing-xs;
+  border: none;
+  background: none;
+  color: theme.$color-text;
+  cursor: pointer;
+
+  &:hover {
+    color: theme.$color-accent;
+  }
+}
+
+.mobile-drawer {
+  display: none;
+
+  @media (#{$mobile-breakpoint-query}) {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    z-index: theme.$z-index-drawer;
+    background-color: theme.$color-surface;
+    padding: theme.$spacing-lg;
+  }
+
+  @media (#{$mobile-breakpoint-query}) and (prefers-reduced-motion: no-preference) {
+    animation: drawer-slide-in 0.25s ease-out;
+  }
+}
+
+.drawer-close {
+  align-self: flex-end;
+  margin-block-end: theme.$spacing-lg;
+}
+
+.mobile-drawer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: theme.$spacing-lg;
+  font-size: 1.25rem;
+}
+
+@keyframes drawer-slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}

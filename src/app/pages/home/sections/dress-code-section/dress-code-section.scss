@@ -1,0 +1,58 @@
+@use '../../../../../styles/theme';
+
+.dress-code-section {
+  background-color: theme.$color-surface;
+  padding: theme.$spacing-2xl theme.$spacing-md;
+}
+
+.section-inner {
+  max-width: theme.$max-content-width;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: theme.$color-primary-dark;
+  margin-bottom: theme.$spacing-md;
+}
+
+.description {
+  max-width: 640px;
+  margin-inline: auto;
+  margin-bottom: theme.$spacing-xl;
+  line-height: 1.6;
+}
+
+.lists {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: theme.$spacing-xl;
+}
+
+.list-block {
+  flex: 1 1 260px;
+  max-width: 320px;
+  text-align: left;
+
+  ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: theme.$color-text-muted;
+    line-height: 1.8;
+  }
+}
+
+.list-title {
+  font-size: 1.1rem;
+  margin-bottom: theme.$spacing-sm;
+}
+
+.do-title {
+  color: theme.$color-primary;
+}
+
+.avoid-title {
+  color: theme.$color-accent;
+}

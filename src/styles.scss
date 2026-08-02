@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use './styles/theme';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: theme.$font-family-body;
+  color: theme.$color-text;
+  background-color: theme.$color-background;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: theme.$font-family-heading;
+  color: theme.$color-text;
+  margin: 0;
+  font-weight: 600;
+}
+
+p {
+  margin: 0;
+}
+
+section[id] {
+  scroll-margin-top: theme.$nav-height;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+

@@ -1,0 +1,17 @@
+@use '../../../../../styles/theme';
+
+:host {
+  display: contents;
+}
+
+.nav-link {
+  font-family: theme.$font-family-heading;
+  color: theme.$color-text;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: theme.$color-accent;
+  }
+}
