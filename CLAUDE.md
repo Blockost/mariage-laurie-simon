@@ -21,6 +21,11 @@ Wedding website for Laurie & Simon, built with Angular 22 (zoneless-ready, stand
 - **Config split**: `app.config.ts` (browser providers) is merged with `app.config.server.ts` (server-only providers, e.g. `provideServerRendering`) via `mergeApplicationConfig` — keep browser-only vs. server-only providers in their respective files.
 - **Bootstrap**: `src/main.ts` (browser) and `src/main.server.ts` (server) are the two entry points; don't need to be touched when adding features/routes.
 
+## Working with Claude Code
+
+- During planning, be thorough about asking clarifying questions rather than assuming. Actively look for corner cases, ambiguous requirements, and unstated constraints (e.g. deployment target, breakpoints, URL structure, a11y/close/interaction behavior) and surface them via questions before committing to a plan.
+- Challenge the user's stated approach when a better one exists for UX, correctness, or maintainability — don't just implement the first framing given. Push back with the tradeoff, then let the user decide.
+
 ## Conventions
 
 - Style: 2-space indent, single quotes, 100-char print width (Prettier config in `.prettierrc`, enforced via `.editorconfig`).
