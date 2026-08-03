@@ -1,35 +1,30 @@
 // =============================================================================
 // Theme
 // -----------------------------------------------------------------------------
-// Change the three base colors below to re-theme the entire website.
-// Every other color in this file is derived from them, so there is no need
-// to touch anything past the "Base palette" block for a simple re-theme.
+// Forest palette: OKLCH tokens, literal (not derived from a base color — these
+// values come from the approved design and aren't mathematically related to
+// each other). Change values below directly to re-theme.
 // =============================================================================
 
-@use 'sass:color';
-
-// Base palette ----------------------------------------------------------------
-$color-primary: #7c8b6f; // sage green
-$color-secondary: #d9c4a9; // warm sand
-$color-accent: #b8763e; // terracotta
-
-// Derived shades (kept in sync with the base palette automatically) -----------
-$color-primary-light: color.scale($color-primary, $lightness: 45%);
-$color-primary-dark: color.scale($color-primary, $lightness: -20%);
-$color-secondary-light: color.scale($color-secondary, $lightness: 35%);
-$color-secondary-dark: color.scale($color-secondary, $lightness: -20%);
-$color-accent-light: color.scale($color-accent, $lightness: 40%);
-$color-accent-dark: color.scale($color-accent, $lightness: -20%);
+// Base palette (forest) ---------------------------------------------------------
+$color-ink: oklch(0.2 0.045 155); // deep forest — dark surfaces (nav-scrolled, hero, event section, drawer, footer)
+$color-ink-2: oklch(0.28 0.06 155); // hero gradient — mid stop
+$color-ink-3: oklch(0.24 0.05 155); // hero gradient — end stop
+$color-berry: oklch(0.52 0.19 350); // primary accent — CTA, venue name, eyebrows on light bg
+$color-berry-dark: oklch(0.36 0.12 350); // gift section gradient end stop
+$color-gold: oklch(0.78 0.13 85); // secondary accent — hover states, eyebrows on dark bg, initials
+$color-gold-dark: oklch(0.62 0.13 80); // "avoid" accent
+$color-cream: oklch(0.97 0.02 95); // light backgrounds + text-on-dark
 
 // Neutrals ----------------------------------------------------------------------
-$color-background: #fdfbf7;
-$color-surface: #ffffff;
-$color-text: #2f2b26;
-$color-text-muted: #6f675c;
-$color-border: #e4ddd0;
+$color-background: $color-cream;
+$color-surface: oklch(0.98 0.015 95);
+$color-text: oklch(0.24 0.02 140);
+$color-text-muted: oklch(0.46 0.03 140);
 
 // Typography --------------------------------------------------------------------
 $font-family-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+$font-family-script: 'Alex Brush', cursive;
 $font-family-body: 'Glacial Indifference', 'Helvetica Neue', Arial, sans-serif;
 
 // Spacing scale -------------------------------------------------------------------
@@ -40,10 +35,14 @@ $spacing-lg: 2.5rem;
 $spacing-xl: 4rem;
 $spacing-2xl: 6rem;
 
+// Motion --------------------------------------------------------------------------
+$reveal-distance: 28px;
+$reveal-duration: 0.7s;
+
 // Layout ----------------------------------------------------------------------------
 $max-content-width: 1080px;
 $border-radius: 8px;
-$nav-height: 72px;
+$nav-height: 76px;
 $z-index-nav: 100;
 $z-index-drawer: 200;
 $breakpoint-mobile: 550px;

@@ -1,0 +1,114 @@
+@use 'sass:color';
+@use '../../../../styles/theme';
+
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  background: linear-gradient(160deg, theme.$color-ink, theme.$color-ink-2 60%, theme.$color-ink-3);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-blob {
+  position: absolute;
+  z-index: 0;
+}
+
+.hero-blob-1 {
+  top: -120px;
+  left: -100px;
+  width: 420px;
+  height: 420px;
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+  background: radial-gradient(circle at 35% 35%, color.change(theme.$color-berry, $alpha: 0.5), transparent 70%);
+  filter: blur(20px);
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: floatBlobModerate 12s ease-in-out infinite;
+  }
+}
+
+.hero-blob-2 {
+  bottom: -140px;
+  right: -120px;
+  width: 460px;
+  height: 460px;
+  border-radius: 60% 40% 35% 65% / 55% 60% 40% 45%;
+  background: radial-gradient(circle at 60% 60%, color.change(theme.$color-gold, $alpha: 0.35), transparent 70%);
+  filter: blur(24px);
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: floatBlobModerate 15s ease-in-out infinite reverse;
+  }
+}
+
+.hero-eyebrow {
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: theme.$color-gold;
+  margin: 0 0 20px;
+  font-weight: 600;
+}
+
+.hero-name {
+  position: relative;
+  z-index: 1;
+  font-family: theme.$font-family-script;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+  font-size: clamp(3.5rem, 12vw, 7rem);
+  color: theme.$color-cream;
+  margin: 0 0 20px;
+  line-height: 1.05;
+}
+
+.hero-photo-wrap {
+  position: relative;
+  z-index: 1;
+  width: 243px;
+  height: 293px;
+  margin: 8px 0 28px;
+  border-radius: 58% 42% 40% 60% / 50% 55% 45% 50%;
+  overflow: hidden;
+  box-shadow: 0 20px 60px oklch(0.1 0.03 155 / 0.5);
+  border: 3px solid color.change(theme.$color-gold, $alpha: 0.6);
+  color: theme.$color-cream;
+}
+
+.hero-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-date {
+  position: relative;
+  z-index: 1;
+  font-family: theme.$font-family-heading;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: theme.$color-cream;
+  letter-spacing: 0.05em;
+  margin: 0 0 36px;
+}
+
+.hero-scroll-hint {
+  position: relative;
+  z-index: 1;
+  color: color.change(theme.$color-cream, $alpha: 0.6);
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: bounceDown 2s ease-in-out infinite;
+  }
+}

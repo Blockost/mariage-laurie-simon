@@ -1,7 +1,11 @@
-<section class="event-details-section" id="event-details">
+<section class="event-details-section" id="event-details" appRevealOnScroll>
+  <div class="corner-accent" aria-hidden="true"></div>
   <div class="section-inner">
-    <h2 class="section-title">{{ content.title }}</h2>
-    <p class="event-date">{{ content.date }}</p>
+    <div class="section-header">
+      <p class="eyebrow">Save the date</p>
+      <h2 class="section-title">{{ content.title }}</h2>
+      <p class="event-date">{{ content.date }}</p>
+    </div>
 
     <ol class="schedule">
       @for (item of content.schedule; track item.name) {
@@ -16,4 +20,3 @@
     </ol>
   </div>
 </section>
-

@@ -9,6 +9,11 @@ export interface ScheduleItem {
 }
 
 export interface HomeContent {
+  couple: {
+    names: string;
+    initials: string;
+    weddingDate: string;
+  };
   location: {
     title: string;
     venueName: string;
@@ -35,10 +40,15 @@ export interface HomeContent {
 }
 
 export const HOME_CONTENT: HomeContent = {
+  couple: {
+    names: 'Laurie & Simon',
+    initials: 'L & S',
+    weddingDate: 'July 17, 2027',
+  },
   location: {
     title: 'Location',
-    venueName: 'Lorem Ipsum Estate',
-    address: '123 Lorem Ipsum Lane, Dolor Sit, 75000',
+    venueName: 'Domaine de la mairie de Fuilla',
+    address: '41 ancien chemin de Villefranche, 66820 Fuilla',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor ' +
       'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.',
@@ -46,7 +56,7 @@ export const HOME_CONTENT: HomeContent = {
   },
   eventDetails: {
     title: 'Event Details',
-    date: 'Saturday, Lorem 00, 2027',
+    date: 'Saturday, July 17, 2027',
     schedule: [
       {
         name: 'Ceremony',
@@ -80,7 +90,7 @@ export const HOME_CONTENT: HomeContent = {
       'Dolor sit amet pastel or earth tones',
       'Consectetur adipiscing comfortable shoes',
     ],
-    avoidList: ['Adipiscing elit white or ivory (reserved for the bride)', 'Sed do eiusmod jeans or sneakers'],
+    avoidList: ['White or ivory (reserved for the bride)', 'Jeans or sneakers'],
   },
   gift: {
     title: 'Wedding Gift',

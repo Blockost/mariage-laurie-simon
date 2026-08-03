@@ -1,32 +1,58 @@
+@use 'sass:color';
 @use '../../../../../styles/theme';
 
 .gift-section {
-  background-color: theme.$color-secondary-light;
+  position: relative;
   padding: theme.$spacing-2xl theme.$spacing-md;
+  background: linear-gradient(135deg, theme.$color-berry, theme.$color-berry-dark);
+  overflow: hidden;
+}
+
+.corner-accent {
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  width: 280px;
+  height: 280px;
+  border-radius: 45% 55% 60% 40% / 50%;
+  background: radial-gradient(circle, color.change(theme.$color-cream, $alpha: 0.15), transparent 70%);
+  filter: blur(10px);
 }
 
 .section-inner {
-  max-width: theme.$max-content-width;
+  max-width: 680px;
   margin-inline: auto;
   text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: color.change(theme.$color-cream, $alpha: 0.8);
+  font-weight: 600;
+  margin: 0 0 12px;
 }
 
 .section-title {
-  font-size: 2rem;
-  color: theme.$color-primary-dark;
-  margin-bottom: theme.$spacing-md;
+  font-family: theme.$font-family-heading;
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  color: theme.$color-cream;
+  margin: 0 0 24px;
 }
 
 .description {
-  max-width: 640px;
-  margin-inline: auto;
-  margin-bottom: theme.$spacing-sm;
-  line-height: 1.6;
+  line-height: 1.7;
+  font-size: 1.15rem;
+  color: color.change(theme.$color-cream, $alpha: 0.9);
+  margin: 0 0 16px;
 }
 
 .registry-note {
-  max-width: 640px;
-  margin-inline: auto;
-  color: theme.$color-text-muted;
-  line-height: 1.6;
+  line-height: 1.7;
+  color: color.change(theme.$color-cream, $alpha: 0.7);
+  margin: 0;
 }

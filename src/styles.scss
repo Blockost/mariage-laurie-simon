@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @use './styles/theme';
+@use './styles/animations';
 
 @font-face {
   font-family: 'Glacial Indifference';
@@ -47,6 +48,25 @@ section[id] {
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(theme.$reveal-distance);
+  transition:
+    opacity theme.$reveal-duration ease,
+    transform theme.$reveal-duration ease;
+
+  &.is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 

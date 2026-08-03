@@ -1,0 +1,22 @@
+@use 'sass:color';
+@use '../../../../styles/theme';
+
+.site-footer {
+  background: theme.$color-ink;
+  padding: 56px 24px;
+  text-align: center;
+}
+
+.footer-name {
+  font-family: theme.$font-family-script;
+  font-size: 2rem;
+  color: theme.$color-gold;
+  margin: 0 0 8px;
+}
+
+.footer-date {
+  color: color.change(theme.$color-cream, $alpha: 0.55);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  margin: 0;
+}

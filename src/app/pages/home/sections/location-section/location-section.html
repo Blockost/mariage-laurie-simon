@@ -1,10 +1,19 @@
-<section class="location-section" id="location">
+<section class="location-section" id="location" appRevealOnScroll>
   <div class="section-inner">
-    <h2 class="section-title">{{ content.title }}</h2>
-    <h3 class="venue-name">{{ content.venueName }}</h3>
-    <p class="address">{{ content.address }}</p>
-    <p class="description">{{ content.description }}</p>
-    <a class="map-link" [href]="content.mapUrl" target="_blank" rel="noopener">View on map</a>
+    <div class="section-header">
+      <p class="eyebrow">Where to find us</p>
+      <h2 class="section-title">{{ content.title }}</h2>
+    </div>
+    <div class="content-row">
+      <div class="venue-photo">
+        <img class="venue-photo-img" src="images/photo_fuilla.webp" [alt]="content.venueName" />
+      </div>
+      <div class="venue-info">
+        <h3 class="venue-name">{{ content.venueName }}</h3>
+        <p class="address">{{ content.address }}</p>
+        <p class="description">{{ content.description }}</p>
+        <a class="map-link" [href]="content.mapUrl" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+    </div>
   </div>
 </section>
-

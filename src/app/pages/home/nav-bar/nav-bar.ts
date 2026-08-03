@@ -1,12 +1,4 @@
-import {
-  afterNextRender,
-  Component,
-  DestroyRef,
-  ElementRef,
-  inject,
-  signal,
-  viewChild,
-} from '@angular/core';
+import { afterNextRender, Component, DestroyRef, inject, signal } from '@angular/core';
 import { HOME_CONTENT } from '../../../content/home-content';
 import { NavItem, NavLinks } from './nav-links/nav-links';
 
@@ -17,26 +9,24 @@ import { NavItem, NavLinks } from './nav-links/nav-links';
   styleUrl: './nav-bar.scss',
 })
 export class NavBar {
-  protected readonly isSticky = signal(false);
+  protected readonly isScrolled = signal(false);
   protected readonly isDrawerOpen = signal(false);
+  protected readonly initials = HOME_CONTENT.couple.initials;
 
   protected readonly navItems: readonly NavItem[] = [
+    { label: 'Home', fragment: 'home' },
     { label: HOME_CONTENT.location.title, fragment: 'location' },
     { label: HOME_CONTENT.eventDetails.title, fragment: 'event-details' },
     { label: HOME_CONTENT.dressCode.title, fragment: 'dress-code' },
     { label: HOME_CONTENT.gift.title, fragment: 'gift' },
   ];
 
-  private readonly navEl = viewChild.required<ElementRef<HTMLElement>>('navEl');
-
-  // The navbar is the first element on the page, so while it's `position: static`
-  // its own height is exactly how far you can scroll before it disappears above the
-  // viewport. Using that as the sticky threshold (rather than an arbitrary pixel
-  // value) means it flips to `position: sticky` at the instant it would otherwise
-  // scroll out of view, with no gap where it's briefly invisible.
+  // The nav is a fixed-position overlay atop the full-bleed hero, so there's no
+  // "nav's own height" to measure anymore. Instead it fades in an opaque
+  // background once scrolled past roughly the hero's height (60% of viewport
+  // height), matching the design spec.
   private readonly onScroll = () => {
-    const stickyThreshold = this.navEl().nativeElement.offsetHeight;
-    this.isSticky.set(window.scrollY >= stickyThreshold);
+    this.isScrolled.set(window.scrollY > window.innerHeight * 0.6);
   };
 
   private readonly onKeydown = (event: KeyboardEvent) => {

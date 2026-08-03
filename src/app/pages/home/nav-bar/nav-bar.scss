@@ -1,10 +1,14 @@
+@use 'sass:color';
 @use '../../../../styles/theme';
 
 $mobile-breakpoint-query: 'max-width: #{theme.$breakpoint-mobile - 1px}';
+$nav-bg-scrolled: color.change(theme.$color-ink, $alpha: 0.96);
 
 .nav-bar {
-  position: static;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: theme.$z-index-nav;
   display: flex;
   flex-wrap: wrap;
@@ -13,12 +17,17 @@ $mobile-breakpoint-query: 'max-width: #{theme.$breakpoint-mobile - 1px}';
   gap: theme.$spacing-lg;
   min-height: theme.$nav-height;
   padding-inline: theme.$spacing-md;
-  background-color: theme.$color-surface;
-  border-bottom: 1px solid theme.$color-border;
+  background: transparent;
+  box-shadow: none;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
-  &.is-sticky {
-    position: sticky;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+  &.is-scrolled {
+    background: $nav-bg-scrolled;
+    box-shadow: 0 4px 20px oklch(0.1 0.03 155 / 25%);
   }
 
   @media (#{$mobile-breakpoint-query}) {
@@ -32,16 +41,27 @@ $mobile-breakpoint-query: 'max-width: #{theme.$breakpoint-mobile - 1px}';
   @media (#{$mobile-breakpoint-query}) {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: fixed;
     inset-block-start: 0;
     inset-inline-start: 0;
     width: 100%;
     min-height: theme.$nav-height;
     padding-inline: theme.$spacing-md;
-    background-color: theme.$color-surface;
-    border-bottom: 1px solid theme.$color-border;
     z-index: theme.$z-index-nav;
+    background: transparent;
+    transition: background 0.3s ease;
+
+    &.is-scrolled {
+      background: $nav-bg-scrolled;
+    }
   }
+}
+
+.mobile-initials {
+  font-family: theme.$font-family-script;
+  font-size: 1.6rem;
+  color: theme.$color-gold;
 }
 
 .menu-toggle,
@@ -52,11 +72,11 @@ $mobile-breakpoint-query: 'max-width: #{theme.$breakpoint-mobile - 1px}';
   padding: theme.$spacing-xs;
   border: none;
   background: none;
-  color: theme.$color-text;
+  color: theme.$color-cream;
   cursor: pointer;
 
   &:hover {
-    color: theme.$color-accent;
+    color: theme.$color-gold;
   }
 }
 
@@ -69,8 +89,9 @@ $mobile-breakpoint-query: 'max-width: #{theme.$breakpoint-mobile - 1px}';
     position: fixed;
     inset: 0;
     z-index: theme.$z-index-drawer;
-    background-color: theme.$color-surface;
+    background: theme.$color-ink;
     padding: theme.$spacing-lg;
+    overflow: hidden;
   }
 
   @media (#{$mobile-breakpoint-query}) and (prefers-reduced-motion: no-preference) {
@@ -78,17 +99,37 @@ $mobile-breakpoint-query: 'max-width: #{theme.$breakpoint-mobile - 1px}';
   }
 }
 
+.drawer-blob {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 38% 62% 65% 35% / 45% 40% 60% 55%;
+  background: radial-gradient(circle at 30% 30%, color.change(theme.$color-berry, $alpha: 0.55), transparent 70%);
+  filter: blur(10px);
+  z-index: 0;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: floatBlobModerate 12s ease-in-out infinite;
+  }
+}
+
 .drawer-close {
+  position: relative;
+  z-index: 1;
   align-self: flex-end;
   margin-block-end: theme.$spacing-lg;
 }
 
 .mobile-drawer-links {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: theme.$spacing-lg;
-  font-size: 1.25rem;
+  gap: 36px;
+  font-size: 1.6rem;
 }
 
 @keyframes drawer-slide-in {

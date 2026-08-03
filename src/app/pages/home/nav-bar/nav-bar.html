@@ -1,8 +1,9 @@
-<nav #navEl class="nav-bar" [class.is-sticky]="isSticky()">
+<nav class="nav-bar" [class.is-scrolled]="isScrolled()">
   <app-nav-links [navItems]="navItems" />
 </nav>
 
-<div class="mobile-bar">
+<div class="mobile-bar" [class.is-scrolled]="isScrolled()">
+  <div class="mobile-initials">{{ initials }}</div>
   <button
     type="button"
     class="menu-toggle"
@@ -25,6 +26,7 @@
 
 @if (isDrawerOpen()) {
   <div class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Site navigation">
+    <div class="drawer-blob" aria-hidden="true"></div>
     <button type="button" class="drawer-close" (click)="closeDrawer()" aria-label="Close menu">
       <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
         <path

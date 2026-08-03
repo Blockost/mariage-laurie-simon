@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HOME_CONTENT } from '../../../content/home-content';
 import { NavBar } from './nav-bar';
 
-const STUBBED_NAV_HEIGHT = 64;
+const STUBBED_VIEWPORT_HEIGHT = 800;
 
 // jsdom doesn't implement window.scrollTo (it's a documented no-op), so tests set
 // window.scrollY directly and dispatch a scroll event to simulate the browser.
@@ -12,12 +12,18 @@ function simulateScrollTo(y: number): void {
   window.dispatchEvent(new Event('scroll'));
 }
 
+function stubViewportHeight(height: number): void {
+  Object.defineProperty(window, 'innerHeight', { value: height, configurable: true });
+}
+
 describe('NavBar', () => {
   let component: NavBar;
   let fixture: ComponentFixture<NavBar>;
   let navElement: HTMLElement;
 
   beforeEach(async () => {
+    stubViewportHeight(STUBBED_VIEWPORT_HEIGHT);
+
     await TestBed.configureTestingModule({
       imports: [NavBar],
     }).compileComponents();
@@ -27,12 +33,6 @@ describe('NavBar', () => {
     await fixture.whenStable();
 
     navElement = fixture.nativeElement.querySelector('.nav-bar');
-    // jsdom performs no layout, so offsetHeight is always 0 — stub it to a
-    // realistic value to exercise the height-based sticky threshold.
-    Object.defineProperty(navElement, 'offsetHeight', {
-      value: STUBBED_NAV_HEIGHT,
-      configurable: true,
-    });
   });
 
   afterEach(() => {
@@ -44,9 +44,10 @@ describe('NavBar', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should expose one nav item per home section, labeled from HOME_CONTENT', () => {
+  it('should expose one nav item per home section, labeled from HOME_CONTENT, plus a leading home item', () => {
     const labels = component['navItems'].map((item) => item.label);
     expect(labels).toEqual([
+      'Home',
       HOME_CONTENT.location.title,
       HOME_CONTENT.eventDetails.title,
       HOME_CONTENT.dressCode.title,
@@ -54,30 +55,35 @@ describe('NavBar', () => {
     ]);
   });
 
-  it('should not be sticky before scrolling past its own height', () => {
-    simulateScrollTo(STUBBED_NAV_HEIGHT - 1);
-    fixture.detectChanges();
-
-    expect(component['isSticky']()).toBe(false);
-    expect(navElement.classList.contains('is-sticky')).toBe(false);
+  it('should render the couple initials in the mobile bar', () => {
+    const initials = fixture.nativeElement.querySelector('.mobile-initials') as HTMLElement;
+    expect(initials.textContent?.trim()).toBe(HOME_CONTENT.couple.initials);
   });
 
-  it('should become sticky exactly once scrolled past its own height', () => {
-    simulateScrollTo(STUBBED_NAV_HEIGHT);
+  it('should not show an opaque background before scrolling past 60% of the viewport height', () => {
+    simulateScrollTo(STUBBED_VIEWPORT_HEIGHT * 0.6);
     fixture.detectChanges();
 
-    expect(component['isSticky']()).toBe(true);
-    expect(navElement.classList.contains('is-sticky')).toBe(true);
+    expect(component['isScrolled']()).toBe(false);
+    expect(navElement.classList.contains('is-scrolled')).toBe(false);
   });
 
-  it('should drop sticky once scrolled back above the threshold', () => {
-    simulateScrollTo(STUBBED_NAV_HEIGHT);
+  it('should show an opaque background once scrolled past 60% of the viewport height', () => {
+    simulateScrollTo(STUBBED_VIEWPORT_HEIGHT * 0.6 + 1);
+    fixture.detectChanges();
+
+    expect(component['isScrolled']()).toBe(true);
+    expect(navElement.classList.contains('is-scrolled')).toBe(true);
+  });
+
+  it('should drop the opaque background once scrolled back above the threshold', () => {
+    simulateScrollTo(STUBBED_VIEWPORT_HEIGHT * 0.6 + 1);
     fixture.detectChanges();
 
     simulateScrollTo(0);
     fixture.detectChanges();
 
-    expect(component['isSticky']()).toBe(false);
+    expect(component['isScrolled']()).toBe(false);
   });
 
   describe('mobile drawer', () => {
@@ -101,6 +107,7 @@ describe('NavBar', () => {
 
       expect(component['isDrawerOpen']()).toBe(true);
       expect(drawer()).not.toBeNull();
+      expect(drawer()?.querySelector('.drawer-blob')).not.toBeNull();
       expect(menuToggle().getAttribute('aria-expanded')).toBe('true');
       expect(document.body.style.overflow).toBe('hidden');
     });

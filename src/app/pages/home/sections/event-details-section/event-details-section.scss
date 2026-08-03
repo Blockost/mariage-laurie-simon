@@ -1,61 +1,105 @@
+@use 'sass:color';
 @use '../../../../../styles/theme';
 
 .event-details-section {
-  background-color: theme.$color-background;
+  position: relative;
   padding: theme.$spacing-2xl theme.$spacing-md;
+  background: theme.$color-ink;
+  overflow: hidden;
+}
+
+.corner-accent {
+  position: absolute;
+  top: -100px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50% 50% 40% 60% / 50%;
+  background: radial-gradient(circle, color.change(theme.$color-gold, $alpha: 0.15), transparent 70%);
+  filter: blur(10px);
 }
 
 .section-inner {
-  max-width: theme.$max-content-width;
+  max-width: 900px;
   margin-inline: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.section-header {
   text-align: center;
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: theme.$color-gold;
+  font-weight: 600;
+  margin: 0 0 12px;
 }
 
 .section-title {
-  font-size: 2rem;
-  color: theme.$color-primary-dark;
-  margin-bottom: theme.$spacing-md;
+  font-family: theme.$font-family-heading;
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  color: theme.$color-cream;
+  margin: 0 0 12px;
 }
 
 .event-date {
-  color: theme.$color-accent;
-  font-size: 1.25rem;
+  color: theme.$color-gold;
+  font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: theme.$spacing-xl;
+  margin: 0 0 56px;
 }
 
 .schedule {
   list-style: none;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
-  max-width: 640px;
   display: flex;
   flex-direction: column;
-  gap: theme.$spacing-lg;
-  text-align: left;
+  gap: 28px;
 }
 
 .schedule-item {
   display: flex;
-  gap: theme.$spacing-md;
+  gap: 24px;
   align-items: flex-start;
-  border-left: 3px solid theme.$color-secondary;
-  padding-left: theme.$spacing-md;
+  background: color.change(theme.$color-cream, $alpha: 0.06);
+  border: 1px solid color.change(theme.$color-cream, $alpha: 0.12);
+  border-radius: 16px;
+  padding: 24px 28px;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+
+  &:hover {
+    transform: translateX(6px);
+    background: color.change(theme.$color-cream, $alpha: 0.1);
+  }
 }
 
 .schedule-time {
   flex: 0 0 auto;
-  min-width: 5.5rem;
+  min-width: 5rem;
   font-weight: 600;
-  color: theme.$color-primary;
+  font-size: 1.05rem;
+  color: theme.$color-gold;
 }
 
 .schedule-name {
-  font-size: 1.15rem;
-  margin-bottom: theme.$spacing-xs;
+  font-family: theme.$font-family-heading;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: theme.$color-cream;
+  margin: 0 0 8px;
 }
 
 .schedule-description {
-  color: theme.$color-text-muted;
+  color: color.change(theme.$color-cream, $alpha: 0.65);
   line-height: 1.6;
+  margin: 0;
 }

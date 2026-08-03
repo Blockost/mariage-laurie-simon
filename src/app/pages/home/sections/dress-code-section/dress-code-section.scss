@@ -1,58 +1,112 @@
 @use '../../../../../styles/theme';
 
 .dress-code-section {
-  background-color: theme.$color-surface;
+  position: relative;
   padding: theme.$spacing-2xl theme.$spacing-md;
+  background: theme.$color-background;
 }
 
 .section-inner {
-  max-width: theme.$max-content-width;
+  max-width: 900px;
   margin-inline: auto;
   text-align: center;
 }
 
+.eyebrow {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: theme.$color-berry;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
 .section-title {
-  font-size: 2rem;
-  color: theme.$color-primary-dark;
-  margin-bottom: theme.$spacing-md;
+  font-family: theme.$font-family-heading;
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  color: theme.$color-ink;
+  margin: 0;
 }
 
 .description {
   max-width: 640px;
-  margin-inline: auto;
-  margin-bottom: theme.$spacing-xl;
-  line-height: 1.6;
+  margin: 0 auto 56px;
+  line-height: 1.7;
+  font-size: 1.15rem;
 }
 
-.lists {
+.cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: theme.$spacing-xl;
+  gap: 32px;
 }
 
-.list-block {
-  flex: 1 1 260px;
-  max-width: 320px;
+.card {
+  flex: 1 1 280px;
+  max-width: 340px;
   text-align: left;
+  background: theme.$color-surface;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 12px 30px oklch(0.2 0.05 155 / 8%);
+  transition: transform 0.2s ease;
 
-  ul {
-    margin: 0;
-    padding-left: 1.1rem;
-    color: theme.$color-text-muted;
-    line-height: 1.8;
+  &:hover {
+    transform: translateY(-6px);
   }
 }
 
-.list-title {
-  font-size: 1.1rem;
-  margin-bottom: theme.$spacing-sm;
+.card-title {
+  font-family: theme.$font-family-heading;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 0 0 18px;
 }
 
-.do-title {
-  color: theme.$color-primary;
+.wear-title {
+  color: theme.$color-berry;
 }
 
 .avoid-title {
-  color: theme.$color-accent;
+  color: theme.$color-gold-dark;
+}
+
+.wear-list,
+.avoid-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: theme.$color-text-muted;
+  line-height: 1.9;
+  font-size: 1.05rem;
+
+  li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+  }
+}
+
+.wear-list li::before {
+  background: theme.$color-berry;
+}
+
+.avoid-list li::before {
+  background: theme.$color-gold-dark;
 }
